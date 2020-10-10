@@ -1,6 +1,7 @@
 import { motion } from "framer-motion"
 import React, { useState } from "react"
 import styled from "styled-components"
+import { TopBanner } from "./Banner"
 
 const Main = styled.div`
     position: relative;
@@ -85,57 +86,83 @@ function App() {
     const [count, setCount] = useState(0)
 
     return (
-        <div className="App">
-            <Main>
-                <Button
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.9 }}
-                    onClick={() => {
-                        setAnimate(true)
-                        const countDelay = duration * 2 * 1000
-                        setTimeout(() => setCount(1), countDelay)
-                    }}
-                >
-                    Increment
-                </Button>
-                <Count style={{ top: 462, left: 259 }}>{count}</Count>
-                <Count style={{ top: 424, left: 799 }}>{count}</Count>
-                <motion.div
-                    initial="hidden"
-                    animate={animate ? "highlight" : "hidden"}
-                    onAnimationComplete={() => {
-                        setAnimate(false)
-                        setTimeout(() => setCount(0), 800)
-                    }}
-                >
-                    <Circle variants={highlightVariants} custom={0} />
-                    <Highlight
-                        style={{ top: 198, left: 792, width: 165 }}
-                        variants={highlightVariants}
-                        custom={1}
-                    />
-                    <Highlight
-                        style={{ top: 109, left: 648 }}
-                        variants={highlightVariants}
-                        custom={2}
-                    />
-                    <Highlight
-                        style={{ top: 109, left: 204 }}
-                        variants={highlightVariants}
-                        custom={2}
-                    />
-                    <Highlight
-                        style={{ top: 462, left: 255, width: 23, height: 26 }}
-                        variants={highlightVariants}
-                        custom={3}
-                    />
-                    <Highlight
-                        style={{ top: 425, left: 794, width: 24, height: 25 }}
-                        variants={highlightVariants}
-                        custom={3}
-                    />
-                </motion.div>
-            </Main>
+        <div
+            style={{
+                minHeight: "100vh",
+                display: "flex",
+                flexDirection: "column",
+            }}
+        >
+            <TopBanner />
+            <div
+                style={{
+                    flex: 1,
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                }}
+            >
+                <Main>
+                    <Button
+                        whileHover={{ scale: 1.1 }}
+                        whileTap={{ scale: 0.9 }}
+                        onClick={() => {
+                            setAnimate(true)
+                            const countDelay = duration * 2 * 1000
+                            setTimeout(() => setCount(1), countDelay)
+                        }}
+                    >
+                        Increment
+                    </Button>
+                    <Count style={{ top: 462, left: 259 }}>{count}</Count>
+                    <Count style={{ top: 424, left: 799 }}>{count}</Count>
+                    <motion.div
+                        initial="hidden"
+                        animate={animate ? "highlight" : "hidden"}
+                        onAnimationComplete={() => {
+                            setAnimate(false)
+                            setTimeout(() => setCount(0), 800)
+                        }}
+                    >
+                        <Circle variants={highlightVariants} custom={0} />
+                        <Highlight
+                            style={{ top: 198, left: 792, width: 165 }}
+                            variants={highlightVariants}
+                            custom={1}
+                        />
+                        <Highlight
+                            style={{ top: 109, left: 648 }}
+                            variants={highlightVariants}
+                            custom={2}
+                        />
+                        <Highlight
+                            style={{ top: 109, left: 204 }}
+                            variants={highlightVariants}
+                            custom={2}
+                        />
+                        <Highlight
+                            style={{
+                                top: 462,
+                                left: 255,
+                                width: 23,
+                                height: 26,
+                            }}
+                            variants={highlightVariants}
+                            custom={3}
+                        />
+                        <Highlight
+                            style={{
+                                top: 425,
+                                left: 794,
+                                width: 24,
+                                height: 25,
+                            }}
+                            variants={highlightVariants}
+                            custom={3}
+                        />
+                    </motion.div>
+                </Main>
+            </div>
         </div>
     )
 }
